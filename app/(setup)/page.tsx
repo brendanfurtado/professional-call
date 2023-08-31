@@ -7,6 +7,7 @@ import { InitialModal } from "@/components/modals/initial-modal";
 const SetupPage = async () => {
   const profile = await initialProfile();
 
+  //Find initial server user is in
   const server = await db.server.findFirst({
     where: {
       members: {
@@ -17,6 +18,7 @@ const SetupPage = async () => {
     },
   });
 
+  //If user is in a server, redirect to that server
   if (server) {
     return redirect(`/servers/${server.id}`);
   }
